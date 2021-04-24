@@ -1,10 +1,15 @@
 @font-face {
-  font-family: 'Josefin';
-  src: url('~@/assets/fonts/Josefin_Sans/JosefinSans-Regular.ttf');
-  font-weight: 400;
+  font-family: 'Spartan';
+  src: url('~@/assets/fonts/Spartan/Spartan-Medium.ttf');
+  font-weight: 500;
 }
 @font-face {
-  font-family: 'Josefin';
-  src: url('~@/assets/fonts/Josefin_Sans/JosefinSans-Bold.ttf');
+  font-family: 'Spartan';
+  src: url('~@/assets/fonts/Spartan/Spartan-SemiBold.ttf');
+  font-weight: 600;
+}
+@font-face {
+  font-family: 'Spartan';
+  src: url('~@/assets/fonts/Spartan/Spartan-Bold.ttf');
   font-weight: 700;
 }
