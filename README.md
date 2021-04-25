@@ -19,8 +19,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [https://github.com/MohammadPorteghali/room-homepage](https://github.com/MohammadPorteghali/todo-app)
-- Live Site URL: [https://mopodev.ir/room-homepage](https://mopodev.ir/todo-app)
+- Solution URL: [https://github.com/MohammadPorteghali/room-homepage](https://github.com/MohammadPorteghali/room-homepage)
+- Live Site URL: [https://mopodev.ir/room-homepage](https://mopodev.ir/room-homepage)
 
 ### Built with
 
