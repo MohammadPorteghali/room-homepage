@@ -22,8 +22,8 @@
       @media (max-width: 900px) { @content };
   }
 
-  @if $breakPoint == tab-land {
-      @media (max-width: 1200px) { @content };
+  @if $breakPoint == normal-screen {
+      @media (max-width: 1024px) { @content };
   }
 
   @if $breakPoint == big-screen {

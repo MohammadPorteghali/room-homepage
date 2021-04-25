@@ -1,9 +1,9 @@
 <template>
   <div class="hero">
-    <navbar />
     <ul class="slider">
       <li class="slider-item" v-for="(item, index) in sliderItems" :key="index">
-        <img :src="require(`@/assets/images/${item.image}`)" class="slider-item-image" :alt="item.image">
+        <img v-if="innerWidth > 1024" :src="require(`@/assets/images/${item.image}`)" class="slider-item-image" :alt="item.image">
+        <img v-else :src="require(`@/assets/images/${item.mobileImage}`)" class="slider-item-image" :alt="item.image">  
         <div class="slider-item-des">
           <h2 class="title">{{ item.title }}</h2>
           <p class="des">
@@ -43,13 +43,12 @@
 </template>
 
 <script>
-import Navbar from './Navbar.vue';
 export default {
-  components: { Navbar },
   data: () => ({
     sliderItems: [
       {
         image: "desktop-image-hero-1.jpg",
+        mobileImage: "mobile-image-hero-1.jpg",
         title: 'Discover innovative ways to decorate',
         des: `We provide unmatched quality, comfort, and style for property
           owners across the country. Our experts combine form and function
@@ -59,7 +58,8 @@ export default {
       },
       {
         image: "desktop-image-hero-2.jpg",
-        title: 'Discover innovative ways to decorate',
+        mobileImage: "mobile-image-hero-2.jpg",
+        title: 'We are available all across the globe',
         des: `We provide unmatched quality, comfort, and style for property
           owners across the country. Our experts combine form and function
           in bringing your vision to life. Create a room in your own style
@@ -68,7 +68,8 @@ export default {
       },
       {
         image: "desktop-image-hero-3.jpg",
-        title: 'Discover innovative ways to decorate',
+        mobileImage: "mobile-image-hero-3.jpg",
+        title: 'Manufactured with the best materials',
         des: `We provide unmatched quality, comfort, and style for property
           owners across the country. Our experts combine form and function
           in bringing your vision to life. Create a room in your own style
@@ -76,8 +77,15 @@ export default {
           and what you love.`
       },
     ],
-    currentSlide: 0
+    currentSlide: 0,
+    innerWidth: window.innerWidth,
   }),
+  watch: {
+    innerWidth(val) {
+      console.log(val);
+      this.screenSize = val
+    }
+  },
   methods: {
     navigateRight() {
       let slides = document.querySelectorAll(".slider-item")
@@ -97,10 +105,13 @@ export default {
     }
   },
   mounted() {
-    setInterval(
-      () => this.navigateRight(),
-      3500
-    )
+    window.addEventListener('resize', () => {
+      this.innerWidth = window.innerWidth
+    })
+    // setInterval(
+    //   () => this.navigateRight(),
+    //   3500
+    // )
   }
 }
 </script>
@@ -111,6 +122,12 @@ export default {
   flex-wrap: wrap;
   overflow: hidden;
   max-height: 100vh;
+
+  @include respond(normal-screen) {
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: unset;
+  }
 
   & .slider {
     display: flex;
@@ -123,14 +140,28 @@ export default {
       width: 100vw;
       transform: translateX(0%);
 
+      @include respond(normal-screen) {
+        flex-direction: column;
+      }
+
       & .slider-item-image {
         width: 60vw;
         height: 66vh;
+
+        @include respond(normal-screen) {
+          width: 100vw;
+          height: 45vh;
+        }
       }
 
       & .slider-item-des {
         padding: 4vw 5vw;
         width: 30vw;
+
+        @include respond(normal-screen) {
+          padding: 6vh 10vw 9vh;
+          width: calc(100vw - 20vw);
+        }
 
         & .title {
           font-weight: 600;
@@ -166,6 +197,12 @@ export default {
       left: 60vw;
       bottom: 0;
 
+      @include respond(normal-screen) {
+        top: calc(45vh - 70px);
+        right: 0;
+        left: unset;
+      }
+
       & .slider-navigation-btn {
         background-color: black;
         padding: 20px 25px;
@@ -184,6 +221,10 @@ export default {
     & .about-image {
       width: 30%;
 
+      @include respond(normal-screen) {
+        width: 100%;
+      }
+
       & img {
         height: 100%;
         width: 100%;
@@ -195,17 +236,21 @@ export default {
       width: calc(40% - 8vw);
       padding: 3.8vw 4vw 0;
 
+      @include respond(normal-screen) {
+        padding: 6vh 10vw;
+        width: calc(100vw - 20vw);
+      }
+
         & .title {
           font-weight: 700;
-          font-size: .8em;
+          font-size: .75em;
           letter-spacing: .4vw;
         }
 
         & .des {
           color: $dark-gray;
           font-size: .7em;
-          line-height: 140%;
-          text-align: justify;
+          line-height: 160%;
         }
     }
   }
