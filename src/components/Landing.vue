@@ -1,5 +1,6 @@
 <template>
   <div class="hero">
+    <navbar />
     <ul class="slider">
       <li class="slider-item" v-for="(item, index) in sliderItems" :key="index">
         <img :src="require(`@/assets/images/${item.image}`)" class="slider-item-image" :alt="item.image">
@@ -42,7 +43,9 @@
 </template>
 
 <script>
+import Navbar from './Navbar.vue';
 export default {
+  components: { Navbar },
   data: () => ({
     sliderItems: [
       {
